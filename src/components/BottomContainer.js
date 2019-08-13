@@ -1,5 +1,6 @@
 import React from 'react'
 import { Platform, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 import { WP, HP } from '../constants'
 
 const styles = StyleSheet.create({
@@ -8,7 +9,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    height: HP('9%'),
+    ...ifIphoneX(
+      {
+        height: HP('10.5%')
+      },
+      {
+        height: HP('9%')
+      }
+    ),
     position: 'absolute',
     width: '100%'
   },

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { ifIphoneX, isIphoneX } from 'react-native-iphone-x-helper'
 import { ProjectStatusBar } from '../components'
 import { WP, HP } from '../constants'
 
@@ -21,18 +22,61 @@ const styles = StyleSheet.create({
     borderRadius: WP('1%'),
     flexDirection: 'row',
     height: HP('7.4%'),
-    width: WP('66%')
+    ...ifIphoneX(
+      {
+        height: HP('6.4%')
+      },
+      {
+        height: HP('7.4%')
+      }
+    ),
+    ...ifIphoneX(
+      {
+        width: WP('70%')
+      },
+      {
+        width: WP('66%')
+      }
+    )
   },
   icon: {
-    height: HP('4.2%'),
-    left: WP('3%'),
-    width: WP('6.93%')
+    ...ifIphoneX(
+      {
+        width: WP('8%')
+      },
+      {
+        width: WP('6.93%')
+      }
+    ),
+    ...ifIphoneX(
+      {
+        height: HP('3.5%')
+      },
+      {
+        height: HP('4.2%')
+      }
+    ),
+    left: WP('3%')
   },
   image: {
     height: HP('4.5%'),
-    left: WP('20%'),
-    top: HP('34%'),
-    width: WP('60%')
+    ...ifIphoneX(
+      {
+        left: WP('13%')
+      },
+      {
+        left: WP('20%')
+      }
+    ),
+    ...ifIphoneX(
+      {
+        width: WP('74%')
+      },
+      {
+        width: WP('60%')
+      }
+    ),
+    top: HP('34%')
   },
   line: {
     backgroundColor: '#DCDCDC',
@@ -61,8 +105,22 @@ const styles = StyleSheet.create({
   text: {
     color: '#808080',
     fontFamily: 'Exo2-Medium',
-    fontSize: HP('2.6%'),
-    left: WP('4%')
+    ...ifIphoneX(
+      {
+        fontSize: HP('2.4%')
+      },
+      {
+        fontSize: HP('2.6%')
+      }
+    ),
+    ...ifIphoneX(
+      {
+        left: WP('3%')
+      },
+      {
+        left: WP('4%')
+      }
+    )
   },
   textContainer: {
     alignItems: 'center',

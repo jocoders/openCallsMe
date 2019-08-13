@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   commentContainer: {
     backgroundColor: 'grey',
-    height: HP('19%'),
+    height: HP('15%'),
     width: '100%'
   },
   container: {
@@ -42,27 +42,49 @@ const styles = StyleSheet.create({
   contactSubContainer: {
     alignItems: 'center',
     flexDirection: 'row',
-    width: WP('58%')
+    width: WP('60%')
+  },
+  defaultTag: {
+    alignItems: 'center',
+    borderColor: '#FEDA5A',
+    borderWidth: WP('0.3%'),
+    backgroundColor: 'rgba(254, 218, 90, 0.6)',
+    borderRadius: HP('6.8%'),
+    justifyContent: 'center'
+  },
+  defaultTagText: {
+    fontFamily: 'Roboto-Medium',
+    fontSize: HP('2.3%'),
+    paddingBottom: HP('0.92%'),
+    paddingLeft: WP('4%'),
+    paddingRight: WP('4%'),
+    paddingTop: HP('0.92%')
+  },
+  durationSubContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: WP('75%')
   },
   modalContainer: {
     alignSelf: 'center',
     backgroundColor: '#ffffff',
 
     flexDirection: 'column',
-    height: HP('100%'),
+    height: HP('95%'),
     top: HP('28%'),
     width: WP('100%')
   },
   phoneContainer: {
     bottom: HP('0.3%'),
     justifyContent: 'space-between',
-    height: HP('6.5%'),
+    height: HP('6.1%'),
     left: WP('4%')
   },
   phoneStyle: {
     color: '#4F4F4F',
     fontFamily: 'Roboto',
-    fontSize: HP('2.4%'),
+    fontSize: HP('2.2%'),
     left: WP('1%')
   },
   phoneSubContainer: {
@@ -71,7 +93,7 @@ const styles = StyleSheet.create({
   slider: {
     height: HP('4%'),
     //top: HP('9.9%'),
-    width: WP('46%')
+    width: WP('50%')
   },
   shadowStyle: {
     elevation: 24,
@@ -85,19 +107,30 @@ const styles = StyleSheet.create({
     shadowRadius: 16
   },
   tagsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    height: HP('23%'),
+    minHeight: HP('24%'),
     width: '100%'
   },
-  tagsContainer: {
-
+  tagsCounter: {
+    width: '100%'
   },
-  tagsText: {},
+  tagsSubContainer: {
+    flexDirection: 'row',
+    left: WP('4.5%'),
+    top: HP('5%')
+  },
+  tagsText: {
+    color: '#4F4F4F',
+    fontFamily: 'Roboto-Medium',
+    fontSize: HP('2.2%'),
+    left: WP('4.5%'),
+    top: HP('2.5%')
+  },
   textDurationStyle: {
     color: '#585858',
     fontFamily: 'Roboto-Medium',
-    fontSize: HP('2.3%')
+    fontSize: HP('2.2%'),
+    right: WP('1%'),
+    width: WP('24%')
   },
   thumb: {
     borderRadius: HP('1.01%'),
@@ -107,7 +140,7 @@ const styles = StyleSheet.create({
   timeStyle: {
     color: 'rgba(79, 79, 79, 0.8)',
     fontFamily: 'Roboto',
-    fontSize: HP('2.2%')
+    fontSize: HP('2.1%')
   },
   track: {
     height: HP('0.3%')
@@ -128,6 +161,9 @@ const ModalContactCard = props => {
     container,
     contactContainer,
     contactSubContainer,
+    defaultTag,
+    defaultTagText,
+    durationSubContainer,
     modalContainer,
     phoneContainer,
     phoneStyle,
@@ -137,6 +173,7 @@ const ModalContactCard = props => {
     tagsContainer,
     tagsCounter,
     tagsText,
+    tagsSubContainer,
     textDurationStyle,
     timeStyle,
     thumb,
@@ -156,7 +193,7 @@ const ModalContactCard = props => {
         <View style={[modalContainer, shadowStyle]}>
           <View style={contactContainer}>
             <TouchableOpacity onPress={console.log('Left icon pressed')}>
-              <Ionicons style={{ color: '#4F4F4F', left: WP('10%') }} name="md-more" size={HP('5%')} />
+              <Ionicons style={{ color: '#4F4F4F', left: WP('8.3%') }} name="md-more" size={HP('5%')} />
             </TouchableOpacity>
 
             <View style={contactSubContainer}>
@@ -178,37 +215,50 @@ const ModalContactCard = props => {
 
           <View style={callDurationContainer}>
             <TouchableOpacity onPress={console.log('Right icon presssed')}>
-              <Ionicons style={{ color: '#4F4F4F', left: WP('3%') }} name="md-pause" size={HP('3.4%')} />
+              <Ionicons style={{ color: '#4F4F4F', left: WP('3.5%') }} name="md-pause" size={HP('3.4%')} />
             </TouchableOpacity>
-            <Text style={textDurationStyle}>{callDuration}:00 / 10:05</Text>
-            <Slider
-              style={slider}
-              minimumValue={0}
-              maximumValue={60}
-              minimumTrackTintColor="#FEDA5A"
-              maximumTrackTintColor="rgba(0, 0, 0, 0.26)"
-              onValueChange={changeCallDuration}
-              step={1}
-              thumbTintColor="#FEDA5A"
-              thumbStyle={thumb}
-              trackStyle={track}
-              value={callDuration}
-            />
+
+            <View style={durationSubContainer}>
+              <Text style={textDurationStyle}>{callDuration}:00 / 10:05</Text>
+              <Slider
+                style={slider}
+                minimumValue={0}
+                maximumValue={60}
+                minimumTrackTintColor="#FEDA5A"
+                maximumTrackTintColor="rgba(0, 0, 0, 0.26)"
+                onValueChange={changeCallDuration}
+                step={1}
+                thumbTintColor="#FEDA5A"
+                thumbStyle={thumb}
+                trackStyle={track}
+                value={callDuration}
+              />
+            </View>
             <TouchableOpacity onPress={console.log('Right icon presssed')}>
-              <Ionicons style={{ color: '#4F4F4F', right: WP('3%') }} name="md-folder" size={HP('4.2%')} />
+              <Ionicons style={{ color: '#4F4F4F', right: WP('3.5%') }} name="md-folder" size={HP('4.2%')} />
             </TouchableOpacity>
           </View>
 
           <View style={tagsContainer}>
             <View style={tagsCounter}>
-              <Text style={tagsText}>Tags (2/5)</Text>
+              <Text style={tagsText}>Tags (2 / 5)</Text>
+            </View>
+
+            <View style={tagsSubContainer}>
+              <View style={defaultTag}>
+                <Text style={defaultTagText}>Important</Text>
+              </View>
+              <View style={[defaultTag, { left: WP('3%') }]}>
+                <Text style={defaultTagText}>Sligthly important</Text>
+              </View>
             </View>
           </View>
+
           <View style={commentContainer}>
-            <Text>Contact container</Text>
+            <Text>Comment container</Text>
           </View>
           <View style={buttonContainer}>
-            <Text>Contact container</Text>
+            <Text>Button container</Text>
           </View>
         </View>
       </Modal>

@@ -33,7 +33,7 @@ const MyCallsScreen = () => {
   const { block, container, date, dateContainer } = styles
   const [searchValue, setSearchValue] = useState(null)
   const [dateBar, setDatebar] = useState('February, 2017')
-  const [callDuration, setCallDuration] = useState(0)
+  const [callDuration, setCallDuration] = useState(1)
   const [modalVisible, setModalVisible] = useState(false)
   const changeTextHandler = value => {
     setSearchValue(value)

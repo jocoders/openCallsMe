@@ -1,5 +1,6 @@
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 import {
   createAppContainer,
   createBottomTabNavigator,
@@ -49,7 +50,14 @@ const AppStack = createBottomTabNavigator(
       inactiveTintColor: 'rgba(255, 255, 255, 0.7)',
       style: {
         backgroundColor: '#0D8B4E',
-        height: HP('7.8%')
+        ...ifIphoneX(
+          {
+            height: HP('7%')
+          },
+          {
+            height: HP('7.8%')
+          }
+        )
       },
       labelStyle: {
         fontFamily: 'Roboto-Medium',

@@ -1,10 +1,18 @@
 import React from 'react'
-import { StyleSheet, StatusBar, View } from 'react-native'
+import { Platform, StyleSheet, StatusBar, View } from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 import { WP, HP } from '../constants'
 
 const styles = StyleSheet.create({
   statusBar: {
-    height: HP('3%')
+    ...ifIphoneX(
+      {
+        height: HP('5.5%')
+      },
+      {
+        height: HP('3%')
+      }
+    )
   }
 })
 

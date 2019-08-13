@@ -1,20 +1,41 @@
 import React from 'react'
 import { Platform, StyleSheet, Text, View } from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 import { WP, HP } from '../constants'
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column'
-    //top: HP('8.9%')
   },
   number: {
     alignItems: 'center',
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: '#000000',
-    borderRadius: WP('4.5%'),
-    height: HP('5%'),
-    width: WP('9%')
+    ...ifIphoneX(
+      {
+        borderRadius: HP('2.2%')
+      },
+      {
+        borderRadius: WP('4.5%')
+      }
+    ),
+    ...ifIphoneX(
+      {
+        height: HP('4.2%')
+      },
+      {
+        height: HP('5%')
+      }
+    ),
+    ...ifIphoneX(
+      {
+        width: WP('9%')
+      },
+      {
+        width: WP('9%')
+      }
+    )
   },
   numberAndroid: {
     alignItems: 'center',
@@ -29,7 +50,14 @@ const styles = StyleSheet.create({
     //alignSelf: 'center',
     color: '#ffffff',
     fontFamily: 'Roboto',
-    fontSize: HP('2.5%'),
+    ...ifIphoneX(
+      {
+        fontSize: HP('2.3%')
+      },
+      {
+        fontSize: HP('2.5%')
+      }
+    ),
     fontWeight: 'bold'
   },
   subContainer: {
@@ -40,7 +68,14 @@ const styles = StyleSheet.create({
   text: {
     alignSelf: 'center',
     fontFamily: 'Roboto-Regular',
-    fontSize: HP('2.6%'),
+    ...ifIphoneX(
+      {
+        fontSize: HP('2.2%')
+      },
+      {
+        fontSize: HP('2.6%')
+      }
+    ),
     left: WP('3.33')
   }
 })
@@ -48,7 +83,7 @@ const BenefitsCard = props => {
   const { container, number, numberAndroid, numberText, subContainer, text } = styles
   const { containerStyle } = props
   return (
-    <View style={[containerStyle, { top: containerStyle }]}>
+    <View style={[container, { top: containerStyle }]}>
       <View style={subContainer}>
         <View style={Platform.OS === 'ios' ? number : numberAndroid}>
           <Text style={numberText}>1</Text>
